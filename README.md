@@ -9,3 +9,13 @@ $ npm install -g expo-cli
 expo init <projectName> [--npm]
 ```
 
+## 安装 ReactNavigation
+
+```bash
+# 安装依赖
+$ yarn add @react-navigation/native
+# 安装依赖
+$ yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+# 安装依赖
+yarn add @react-navigation/stack
+```
