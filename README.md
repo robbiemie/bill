@@ -19,3 +19,14 @@ $ yarn add react-native-reanimated react-native-gesture-handler react-native-scr
 # 安装依赖
 yarn add @react-navigation/stack
 ```
+
+## 启动项目
+
+```bash
+# 启动 web项目
+$ yarn web
+# 启动 ios项目
+$ yarn ios
+# 启动 android项目
+$ yarn android
+```
