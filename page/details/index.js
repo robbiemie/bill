@@ -1,26 +1,15 @@
 import React from 'react';
-import { StyleSheet, TextInput, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Page1 from "./page1"
+import Page2 from "./page2"
 
-export default function DetailsScreen({navigation}) {
-  const {setOptions} = navigation
+const Stack = createStackNavigator();
+
+export default function HomeScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>动态修改 title</Text>
-      <TextInput style={styles.input} 
-        onChangeText={text=>{
-          setOptions({
-            title: text
-        })
-      }}
-      />
-    </View>
+    <Stack.Navigator initialRouteName="page1">
+      <Stack.Screen name="page1" component={Page1} options={{title: "DetailsPage1"}}></Stack.Screen>
+      <Stack.Screen name="page2" component={Page2} options={{title: "DetailsPage2"}}></Stack.Screen>
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    width: 200,
-    height:50,
-    backgroundColor: '#ccc'
-  }
-})
