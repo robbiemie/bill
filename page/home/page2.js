@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, TextInput, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function DetailsScreen({navigation}) {
+export default function Page2Screen({navigation}) {
   const {setOptions} = navigation
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+      <Text>动态修改 title</Text>
       <TextInput style={styles.input} 
         onChangeText={text=>{
           setOptions({
@@ -16,6 +16,7 @@ export default function DetailsScreen({navigation}) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   input: {

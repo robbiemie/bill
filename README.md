@@ -17,7 +17,9 @@ $ yarn add @react-navigation/native
 # 安装依赖
 $ yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 # 安装依赖
-yarn add @react-navigation/stack
+$ yarn add @react-navigation/stack
+# 安装依赖
+$ yarn add @react-navigation/bottom-tabs
 ```
 
 ## 启动项目
