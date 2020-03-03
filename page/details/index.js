@@ -8,8 +8,7 @@ const Stack = createStackNavigator();
 export default function HomeScreen({navigation}) {
   return (
     <Stack.Navigator initialRouteName="page1">
-      <Stack.Screen name="page1" component={Page1} options={{title: "DetailsPage1"}}></Stack.Screen>
-      <Stack.Screen name="page2" component={Page2} options={{title: "DetailsPage2"}}></Stack.Screen>
+      <Stack.Screen name="page2" component={Page2} options={{title: "全民K歌"}}></Stack.Screen>
     </Stack.Navigator>
   );
 }
