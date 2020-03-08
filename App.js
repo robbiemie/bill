@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomeStackScreen from "./page/home/index"
 import DetailStackScreen from "./page/details/index"
+import SettingsStackScreen from "./page/settings/index"
 
 const Tab = createBottomTabNavigator();
 function App() {
@@ -21,8 +22,9 @@ function App() {
                 : 'ios-information-circle-outline';
             } else if (route.name === 'Detail') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
-            }
-
+            }  else if (route.name === 'Setting') {
+              iconName = focused ? 'ios-settings' : 'ios-settings';
+            } 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -34,6 +36,7 @@ function App() {
       >
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Detail" component={DetailStackScreen} />
+        <Tab.Screen name="Setting" component={SettingsStackScreen}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
