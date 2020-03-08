@@ -3,9 +3,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import HomeStackScreen from "./page/home/index"
-import DetailStackScreen from "./page/details/index"
-import SettingsStackScreen from "./page/settings/index"
+import HomeStackScreen from "./example/home/index"
+import DetailStackScreen from "./example/details/index"
+import SettingsStackScreen from "./example/settings/index"
 
 const Tab = createBottomTabNavigator();
 function App() {
