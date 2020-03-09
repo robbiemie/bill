@@ -1,4 +1,8 @@
-# ReactNative 教程
+# 点滴记账本
+
+> 一款基于 `ReactNative` 的记账APP.
+
+
 
 ## 在线文档
 
