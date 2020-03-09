@@ -3,9 +3,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import HomeStackScreen from "./example/home/index"
-import DetailStackScreen from "./example/details/index"
-import SettingsStackScreen from "./example/settings/index"
+import HomeStackScreen from "./pages/home/index"
+import ChartStackScreen from "./pages/chart/index"
+import MemorialStackScreen from "./pages/memorial/index"
+import SettingsStackScreen from "./pages/settings/index"
 
 const Tab = createBottomTabNavigator();
 function App() {
@@ -17,13 +18,13 @@ function App() {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Detail') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
-            }  else if (route.name === 'Setting') {
-              iconName = focused ? 'ios-settings' : 'ios-settings';
+              iconName = 'md-wallet';
+            } else if (route.name === 'Chart') {
+              iconName = 'md-stats';
+            }  else if (route.name === 'Memorial') {
+              iconName = 'md-pricetags';
+            }   else if (route.name === 'Settings') {
+              iconName = 'ios-settings';
             } 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -34,9 +35,10 @@ function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Detail" component={DetailStackScreen} />
-        <Tab.Screen name="Setting" component={SettingsStackScreen}/>
+        <Tab.Screen name="Home"     component={HomeStackScreen} options={{title: "收支明细"}}/>
+        <Tab.Screen name="Chart"  component={ChartStackScreen} options={{title: "折线图示"}} />
+        <Tab.Screen name="Memorial" component={MemorialStackScreen} options={{title: "备忘记录"}} />
+        <Tab.Screen name="Settings" component={SettingsStackScreen} options={{title: "个人设置"}} />
       </Tab.Navigator>
     </NavigationContainer>
   );
