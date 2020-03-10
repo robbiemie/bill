@@ -34,9 +34,9 @@ function HomeNavigator() {
       }}
     >
       <Tab.Screen name="Home"     component={HomeStackScreen} options={{title: "收支明细"}}/>
-      <Tab.Screen name="Chart"  component={ChartStackScreen} options={{title: "折线图示"}} />
-      <Tab.Screen name="Memorial" component={MemorialStackScreen} options={{title: "备忘记录"}} />
-      <Tab.Screen name="Settings" component={SettingsStackScreen} options={{title: "个人设置"}} />
+      <Tab.Screen name="Chart"  component={ChartStackScreen} options={{title: "趋势图"}} />
+      <Tab.Screen name="Memorial" component={MemorialStackScreen} options={{title: "备忘录"}} />
+      <Tab.Screen name="Settings" component={SettingsStackScreen} options={{title: "设置"}} />
     </Tab.Navigator>
   );
 }

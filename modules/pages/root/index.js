@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Text, Button, View } from 'react-native';
-import { StackActions } from '@react-navigation/native';
+import NavigatorTools from "./../../navigator/NavigatorTools"
 
 export default class RootScreen extends Component {
   constructor(props) {
@@ -18,9 +18,7 @@ export default class RootScreen extends Component {
   }
   gobackHomeNav() {
     let { navigation } = this.props
-    navigation.dispatch(
-      StackActions.replace("home")
-    )
+    NavigatorTools.gobackHomeNav(navigation)
   }
   play() {
     this.timer = setInterval(()=> {

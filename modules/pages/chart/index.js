@@ -5,7 +5,7 @@ export default function Page1Screen({navigation}) {
   const {setOptions} = navigation
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>图表</Text>
+      <Text>折现图示</Text>
     </View>
   );
 }
