@@ -7,7 +7,7 @@ export default class RootScreen extends Component {
     super(props)
     this.timer = null
     this.state  = {
-      countdown: 5
+      countdown: 1
     }
   }
   componentDidMount() {
