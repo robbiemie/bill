@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import DataStore from "./../../db/dao/DataStore"
 
 class AliPayScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: 0
+      txt: ''
     }
-    this.getData()
+    this.dataStore = new DataStore()
   }
   getData() {
     console.log('发起请求')
-    fetch('https://yesno.wtf/api')
+    this.dataStore.fetchNetData('https://yesno.wtf/api')
       .then(res=>{
-        if(res.ok) {
-          return res.text()
-        }
-        throw new Error("Network Error", res)
-      })
-      .then(res=>{
-        res = JSON.parse(res)
+        console.log('res', res)
         this.setState({
-          count: res.answer
+          txt: res
         })
       })
   }
@@ -30,7 +25,7 @@ class AliPayScreen extends Component {
     const {setting} = this.props
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>收支明细: 当前余额 ${this.state.count}</Text>
+        <Text onPress={this.getData.bind(this)}>收支明细: 当前余额 ${JSON.stringify(this.state.txt)}</Text>
       </View>
     );
 
