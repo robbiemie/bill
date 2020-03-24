@@ -9,7 +9,7 @@ function handleData(dispatch,storeName,data) {
   })
 }
 
-export function fetchData (storeName,url) {
+export function fetchDataAction (storeName,url) {
   return dispatch => {
     dispatch({
       type: GET_DATALIST_REQ,
