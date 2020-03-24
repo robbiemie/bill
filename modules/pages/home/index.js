@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AliPay from "./AliPay"
-import JDFinance from "./JDFinance"
+import JDFinance from "./Jd"
 import Bank from "./Bank"
 import Others from "./Others"
 

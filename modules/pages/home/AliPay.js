@@ -32,5 +32,6 @@ class AliPayScreen extends Component {
   }
 }
 export default connect(state => ({
-    setting: state.setting
+  home: state.home,
+  setting: state.setting,
 }))(AliPayScreen)
