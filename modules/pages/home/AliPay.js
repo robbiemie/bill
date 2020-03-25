@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import DataStore from "./../../db/dao/DataStore"
 import { fetchDataAction } from "./../../action/fetchAction"
-
 const URL = "https://api.github.com/search/repositories?q=jquery"
 
 class AliPayScreen extends Component {
@@ -47,6 +46,12 @@ class AliPayScreen extends Component {
     // console.log('render', item)
     return (
     <View style={styles.item}>
+      <TouchableOpacity style={styles.close}  onPress={()=> {console.log('图片被点击了')}}>
+        <Image
+          style={styles.closeImg}
+          source={require('./../../../assets/close.png')}
+        />
+      </TouchableOpacity>
       {/* <Text style={styles.itemTxt}>答案:{item.answer ? '对' : '错'}</Text> */}
       <Text>答案:{JSON.stringify(item)}</Text>
       {/* <Text>答案:{item.answer ? '对' : '错'}</Text> */}
@@ -91,9 +96,20 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center', 
   },
+  close: {
+    position: "absolute",
+    top: 2,
+    right: 2
+  },
+  closeImg: {
+    width: 16,
+    height: 16,
+  },
   item: {
     marginBottom: 10,
-    padding: 8,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 10,
     flex: 1,
     height: 100,
     backgroundColor: "#fff",
