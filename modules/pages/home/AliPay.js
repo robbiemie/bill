@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import DataStore from "./../../db/dao/DataStore"
 import { fetchDataAction } from "./../../action/fetchAction"
@@ -44,33 +44,37 @@ class AliPayScreen extends Component {
     )
   }
   _renderItem (item ="") {
-    console.log('render', item)
-    return (<View><Text>{JSON.stringify(item)}</Text></View>)
+    // console.log('render', item)
+    return (
+    <View style={styles.item}>
+      {/* <Text style={styles.itemTxt}>答案:{item.answer ? '对' : '错'}</Text> */}
+      <Text>答案:{JSON.stringify(item)}</Text>
+      {/* <Text>答案:{item.answer ? '对' : '错'}</Text> */}
+    </View>)
   }
   render() {
     const {setting, home} = this.props
     let store = home[this.storeName]
-    let list = [store?.list] || []
-    // console.log('home,', list)
+    let list = store?.list || []
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {/* <Text onPress={this.getData.bind(this)}>收支明细: 当前余额 ${JSON.stringify(this.state.txt)}</Text> */}
+      <View style={styles.container}>
         <FlatList 
+          style={{flex: 1, width: Dimensions.get("window").width, padding: 6}}
           data={list} 
-          keyExtractor={item=> Date.now() + ""}
+          keyExtractor={item=> item.image + Math.random() * Date.now()}
           renderItem={({item})=> this._renderItem(item)}
-          ListFooterComponent={()=> this.genFooterComponent()}
+          // ListFooterComponent={()=> this.genFooterComponent()}
           // onEndReached={()=>this.getData()}
           // 自定义刷新组件
           refreshControl={
             <RefreshControl
               onRefresh={()=>this.getData()}
               refreshing={Boolean(store?.isLoading)}
-              tintColor="#ff0000"
+              tintColor="#ccc"
               title="Loading..."
-              titleColor="#00ff00"
-              colors={['#ff0000', '#00ff00', '#0000ff']}
-              progressBackgroundColor="#ffff00"
+              titleColor="#ccc"
+              colors={['#ccc']} // 
+              progressBackgroundColor="#ccc"
             />
           }
         />
@@ -83,22 +87,20 @@ class AliPayScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
   },
   item: {
-    height: 100,
-    marginRight: 10,
-    marginLeft: 10,
     marginBottom: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    alignItems: 'center',
-    backgroundColor: "#ccc",
+    padding: 8,
+    flex: 1,
+    height: 100,
+    backgroundColor: "#fff",
+  },
+  itemTxt: {
+    display: 'flex',
+    flex: 1
   },
   footerWrap: {
     justifyContent: "center",

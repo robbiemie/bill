@@ -6,7 +6,7 @@ const initialState = {
   // }
 }
 export default function (state=initialState, actions) {
-  console.log(`[${new Date()}] list:`, state,actions)
+  // console.log(`[${new Date()}] list:`, state,actions)
   switch(actions.type) {
     case GET_DATALIST_REQ:
       return {
@@ -18,11 +18,14 @@ export default function (state=initialState, actions) {
       }
       // break;
     case GET_SUCCESS_RES:
+      let store = state[actions.storeName]
+      let list = store?.list || []
+      list.push(actions.payload)
       return {
         ...state,
         [actions.storeName]: {
           ...state[actions.storeName],
-          list: state[actions.storeName]?.list?.concat(actions.payload) || [actions.payload],
+          list,
           isLoading: false
         }
       }
