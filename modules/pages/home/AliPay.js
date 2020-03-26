@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import DataStore from "./../../db/dao/DataStore"
-import { fetchDataAction } from "./../../action/fetchAction"
+import { fetchDataAction, clearDataAction } from "./../../action/fetchAction"
 const URL = "https://api.github.com/search/repositories?q=jquery"
 
 class AliPayScreen extends Component {
@@ -11,6 +11,7 @@ class AliPayScreen extends Component {
     this.state = {
       txt: ''
     }
+    this.canLoadMore = true
     this.storeName = this.props.route.name
     this.dataStore = new DataStore()
   }
@@ -21,14 +22,6 @@ class AliPayScreen extends Component {
     console.log('发起请求')
     const { fetchData } = this.props
     fetchData(this.storeName, 'https://yesno.wtf/api')
-    
-    // this.dataStore.fetchNetData('https://yesno.wtf/api')
-    //   .then(res=>{
-    //     console.log('res', res)
-    //     this.setState({
-    //       txt: res
-    //     })
-    //   })
   }
   genFooterComponent() {
     return (
@@ -58,7 +51,7 @@ class AliPayScreen extends Component {
     </View>)
   }
   render() {
-    const {setting, home} = this.props
+    const {setting, home, clearData} = this.props
     let store = home[this.storeName]
     let list = store?.list || []
     return (
@@ -68,12 +61,30 @@ class AliPayScreen extends Component {
           data={list} 
           keyExtractor={item=> item.image + Math.random() * Date.now()}
           renderItem={({item})=> this._renderItem(item)}
-          // ListFooterComponent={()=> this.genFooterComponent()}
-          // onEndReached={()=>this.getData()}
+          ListFooterComponent={()=> this.genFooterComponent()}
+          onEndReached={()=>{
+            console.log('end reached', this.canLoadMore)
+            this.getData()
+            // setTimeout(()=>{
+
+            //   if(this.canLoadMore) {
+            //     console.log('start reached')
+            //     this.canLoadMore = false
+            //   }
+            // }, 100)
+          }}
+          onEndReachedThreshold={0.5}
+          onMomentumScrollBegin={()=>{
+            this.canLoadMore = true
+            console.log('load more', this.canLoadMore)
+          }}
           // 自定义刷新组件
           refreshControl={
             <RefreshControl
-              onRefresh={()=>this.getData()}
+              onRefresh={()=>{
+                clearData(this.storeName)
+                this.getData()
+              }}
               refreshing={Boolean(store?.isLoading)}
               tintColor="#ccc"
               title="Loading..."
@@ -134,7 +145,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchData: (storeName,url) => dispatch(fetchDataAction(storeName,url))
+  fetchData: (storeName,url) => dispatch(fetchDataAction(storeName,url)),
+  clearData: (storeName) => dispatch(clearDataAction(storeName))
 })
 
 export default connect(

@@ -1,4 +1,4 @@
-import {GET_DATALIST_REQ, GET_SUCCESS_RES} from "./../../constants/actionTypes"
+import {GET_DATALIST_REQ, GET_SUCCESS_RES, DO_CLEAR_LIST } from "./../../constants/actionTypes"
 const initialState = {
   // alipay: {
   //   list: [],
@@ -29,7 +29,15 @@ export default function (state=initialState, actions) {
           isLoading: false
         }
       }
-      // break;
+    case DO_CLEAR_LIST:
+      return {
+        ...state,
+        [actions.storeName]: {
+          ...state[actions.storeName],
+          list: [],
+          isLoading: false
+        }
+      }
     default:
       return state
   }

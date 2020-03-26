@@ -1,6 +1,6 @@
-import {GET_DATALIST_REQ, GET_SUCCESS_RES} from "../constants/actionTypes"
+import {GET_DATALIST_REQ, GET_SUCCESS_RES, DO_CLEAR_LIST} from "../constants/actionTypes"
 import DataStore from "../db/dao/DataStore"
-
+// 处理数据
 function handleData(dispatch,storeName,data) {
   dispatch({
     type: GET_SUCCESS_RES,
@@ -8,7 +8,7 @@ function handleData(dispatch,storeName,data) {
     payload: data
   })
 }
-
+// 获取数据
 export function fetchDataAction (storeName,url) {
   return dispatch => {
     dispatch({
@@ -23,5 +23,14 @@ export function fetchDataAction (storeName,url) {
       .catch(e=>{
         console.log(e)
       })
+  }
+}
+// 清空数据
+export function clearDataAction (storeName) {
+  return dispatch => {
+    dispatch({
+      type: DO_CLEAR_LIST,
+      storeName
+    })
   }
 }
